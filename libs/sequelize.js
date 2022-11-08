@@ -14,6 +14,6 @@ const sequelize = new Sequelize(URI, {
 setupModels(sequelize);
 
 // Sincronizar modelos y crear estructura
-sequelize.sync();
+// sequelize.sync();
 
 module.exports = sequelize;
