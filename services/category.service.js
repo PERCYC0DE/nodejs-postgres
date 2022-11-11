@@ -3,6 +3,7 @@ const { models } = require('./../libs/sequelize');
 
 class CategoryService {
   constructor() {}
+
   async create(data) {
     const newCategory = await models.Category.create(data);
     return newCategory;
@@ -28,6 +29,9 @@ class CategoryService {
   }
 
   async delete(id) {
+    const category = await this.findOne(id);
+    if (!category) throw boom.notFound('Category Not Found');
+    await category.destroy();
     return { id };
   }
 }
