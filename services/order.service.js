@@ -14,8 +14,11 @@ class OrderService {
     return newItem;
   }
 
+  //TODO:implement this feature
   async find() {
-    return [];
+    const orders = await models.Order.findAll();
+    if (!orders) throw boom.notFound('Orders Not Found');
+    return orders;
   }
 
   async findOne(id) {
@@ -34,13 +37,14 @@ class OrderService {
     return order;
   }
 
+  //TODO:How i can updat one order if this have other elements into her schema?
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const order = await this.findOne(id);
+    const response = await order.update(changes);
+    return response;
   }
 
+  //TODO:Need delete one order and and delete her items
   async delete(id) {
     return { id };
   }
