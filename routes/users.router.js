@@ -34,6 +34,7 @@ router.get(
   }
 );
 
+// Create one User
 router.post(
   '/',
   validatorHandler(createUserSchema, 'body'),

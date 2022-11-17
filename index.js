@@ -7,6 +7,7 @@ const {
   errorHandler,
   boomErrorHandler,
 } = require('./middlewares/error.handler');
+const { checkApiKey } = require('./middlewares/auth.handler');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -25,12 +26,8 @@ const options = {
 };
 app.use(cors(options));
 
-app.get('/', (req, res) => {
+app.get('/', checkApiKey, (req, res) => {
   res.send('Hola mi server en express');
-});
-
-app.get('/nueva-ruta', (req, res) => {
-  res.send('Hola, soy una nueva ruta');
 });
 
 routerApi(app);
@@ -40,5 +37,6 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running in port ${port}`);
 });
