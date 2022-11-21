@@ -1,12 +1,14 @@
 const { ValidationError } = require('sequelize');
+// eslint-disable-next-line no-unused-vars
 const boom = require('@hapi/boom');
 
 function logErrors(err, req, res, next) {
+  // eslint-disable-next-line no-console
   console.error(err);
   next(err);
 }
 
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res) {
   res.status(500).json({
     message: err.message,
     stack: err.stack,
