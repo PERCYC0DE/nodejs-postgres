@@ -1,6 +1,6 @@
 'use strict';
 const nodemailer = require('nodemailer');
-
+const { config } = require('./config/config');
 // async..await is not allowed in global scope, must use a wrapper
 async function sendMail() {
   // Generate test SMTP service account from ethereal.email
@@ -13,15 +13,15 @@ async function sendMail() {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: 'ppj.code@gmail.com',
-      pass: 'frujkzwpudldfchu',
+      user: config.smtpUser,
+      pass: config.smtpPassword,
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'ppj.code@gmail.com', // sender address
-    to: 'ppj.tejadadonayre@gmail.com', // list of receivers
+    from: 'correo@gmail.com', // sender address
+    to: 'correo@gmail.com', // list of receivers
     subject: 'Mensaje de Prueba', // Subject line
     text: 'Este es un mensaje de prueba desde un servidor ftp', // plain text body
     html: '<b>Mensaje de Prueba</b>', // html body

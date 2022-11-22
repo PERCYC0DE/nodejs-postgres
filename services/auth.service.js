@@ -41,8 +41,8 @@ class AuthService {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: 'ppj.code@gmail.com',
-        pass: 'frujkzwpudldfchu',
+        user: config.smtpUser,
+        pass: config.smtpPassword,
       },
     });
     await transporter.sendMail({
