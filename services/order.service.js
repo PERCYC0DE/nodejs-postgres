@@ -61,6 +61,9 @@ class OrderService {
 
   //TODO:Need delete one order and and delete her items
   async delete(id) {
+    const order = await this.findOne(id);
+    if (!order) throw boom.notFound('Order Not Found');
+    await order.destroy();
     return { id };
   }
 }
